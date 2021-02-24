@@ -10,7 +10,7 @@ import pickle
 import numpy as np
 from bedrock_client.bedrock.metrics.service import ModelMonitoringService
 from flask import Flask, Response, current_app, request
-from trainn import X_val,y_val
+# from trainn import X_val,y_val
 from train_bedrock import data
 from constants import FEATURE_COLS
 
