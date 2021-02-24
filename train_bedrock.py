@@ -22,10 +22,10 @@ from preprocess import util
 
 
 api_key=os.getenv("SECRET_KEY_1")
-load_data(api_key)
+
 
 TEMP_DATA_BUCKET="gs://bucket-bedrock" #"gs://student_bucket"
-data = load_data(TEMP_DATA_BUCKET)
+data=load_data(TEMP_DATA_BUCKET, storage_options = {"key": api_key})
 data = data.fillna(0)
 
 
