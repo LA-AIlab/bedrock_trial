@@ -21,6 +21,9 @@ from constants import FEATURE_COLS, TARGET_COL
 from preprocess import util
 
 
+api_key=os.getenv("SECRET_KEY_1")
+load_data(api_key)
+
 TEMP_DATA_BUCKET="gs://bucket-bedrock" #"gs://student_bucket"
 data = load_data(TEMP_DATA_BUCKET)
 data = data.fillna(0)
@@ -33,6 +36,7 @@ LR = float(os.getenv("LR"))
 NUM_LEAVES = int(os.getenv("NUM_LEAVES"))
 N_ESTIMATORS = int(os.getenv("N_ESTIMATORS"))
 OUTPUT_MODEL_NAME = os.getenv("OUTPUT_MODEL_NAME")
+
 
 def compute_log_metrics(clf, x_val, y_val):
     """Compute and log metrics."""
