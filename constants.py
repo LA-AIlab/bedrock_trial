@@ -14,5 +14,5 @@ FEATURE_COLS=["Q1+Q2+Q3+Q4 DataPlus", "Q1+Q2+Q3+Q4 DualPane",
        "Q1+Q2+Q3+Q4 Resource", "Q1+Q2+Q3+Q4 SharedSubpage",
        "Q1+Q2+Q3+Q4 Subpage", "Q1+Q2+Q3+Q4 Url"]
 
-ARGET_COL = "final_result"
+TARGET_COL = "final_result"
 
