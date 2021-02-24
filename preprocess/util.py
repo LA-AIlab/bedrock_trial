@@ -38,6 +38,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 def load_data(file_path, file_type="pd_csv"):
     """Load data."""
+    storage_options = {"key": api_key}
     if file_type == "pd_csv":
         return pd.read_csv(file_path)
     elif file_type == "pd_parquet":
