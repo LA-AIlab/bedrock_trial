@@ -21,9 +21,8 @@ from constants import FEATURE_COLS, TARGET_COL
 from preprocess import util
 
 
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Mybedrock-trial-90cbedefa4d3.json"
 api_key=os.getenv("SECRET_KEY_1")
-
-
 TEMP_DATA_BUCKET="gs://bucket-bedrock//features_bedrock.csv" #"gs://student_bucket"
 data=util.load_data(TEMP_DATA_BUCKET, storage_options = {"key": api_key})
 data = data.fillna(0)
