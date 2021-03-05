@@ -52,11 +52,16 @@ blob = bucket.blob('features_bedrock.csv')
 # print("are we getting into buckets?")
 # print(buckets[0])
 # blob = buckets.blob('features_bedrock.csv')
-TEMP_DATA_BUCKET = blob
-data = pd.read_csv(TEMP_DATA_BUCKET)
+# TEMP_DATA_BUCKET = blob
+# data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
+fs = gcsfs.GCSFileSystem(project='mybedrock-trial')
+with fs.open('gs://bucket-bedrock/features_bedrock.csv') as f:
+    data = pd.read_csv(f)
+
+
 data = data.fillna(0)
 print(data.head())
 
