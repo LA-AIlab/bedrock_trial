@@ -7,6 +7,8 @@
 import logging
 import os
 import pickle
+import base64
+from google.cloud import storage
 
 import numpy as np
 import pandas as pd
@@ -23,8 +25,25 @@ from preprocess import util
 # Set environment variable
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "my_secret.json"
 # api_key=os.getenv("SECRET_KEY_1")
+
+# Retrieve secret value from environment variable
+secret_value = os.getenv("MY_SECRET")
+
+# Decode the string to a file using the complementary method as encoding
+decoded_string = base64.b64decode(secret_value)
+with open("service_account.json", "w") as sa_file:  # You may have to open the file with "w" depending on how you read it when encoding
+    sa_file.write(decoded_string) # wb means binary mode for writing
+    
+# Explicitly use service account credentials by specifying the private key file.
+storage_client = storage.Client.from_service_account_json("service_account.json")
+
+# Make an authenticated API request
+buckets = list(storage_client.list_buckets())
+print("are we getting into buckets?")
+print(buckets)
+
 TEMP_DATA_BUCKET="gs://bucket-bedrock//features_bedrock.csv" #"gs://student_bucket"
-data=util.load_data(TEMP_DATA_BUCKET, storage_options = {"key": api_key})
+data=util.load_data(TEMP_DATA_BUCKET)
 data = data.fillna(0)
 print(data.head())
 
