@@ -8,6 +8,7 @@ import logging
 import os
 import pickle
 import base64
+from io import BytesIO
 from google.cloud import storage
 
 import numpy as np
