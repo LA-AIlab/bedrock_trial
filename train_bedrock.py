@@ -45,7 +45,7 @@ print("are we getting into buckets?")
 print(buckets)
 
 
-blob = bucket.blob('features_bedrock.csv')
+blob = buckets.blob('features_bedrock.csv')
 TEMP_DATA_BUCKET = "gs://bucket-bedrock/features_bedrock.csv"
 data = pd.read_csv(TEMP_DATA_BUCKET)
 
