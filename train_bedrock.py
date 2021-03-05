@@ -27,7 +27,7 @@ from preprocess import util
 # api_key=os.getenv("SECRET_KEY_1")
 
 # Retrieve secret value from environment variable
-secret_value = os.getenv("MY_SECRET")
+secret_value = os.getenv("SECRET_KEY_1")
 print("type of var secret value.......: ",type(secret_value))
 
 # Decode the string to a file using the complementary method as encoding
