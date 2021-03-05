@@ -43,7 +43,7 @@ buckets = list(storage_client.list_buckets())
 print("are we getting into buckets?")
 print(buckets)
 
-TEMP_DATA_BUCKET="gs://bucket-bedrock//features_bedrock.csv" #"gs://student_bucket"
+TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
 data = data.fillna(0)
 print(data.head())
