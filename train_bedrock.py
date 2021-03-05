@@ -28,10 +28,11 @@ from preprocess import util
 
 # Retrieve secret value from environment variable
 secret_value = os.getenv("MY_SECRET")
+print("type of var secret value.......: ",type(secret_value))
 
 # Decode the string to a file using the complementary method as encoding
 decoded_string = base64.b64decode(secret_value)
-with open("service_account.json", "w") as sa_file:  # You may have to open the file with "w" depending on how you read it when encoding
+with open("service_account.json", "wb") as sa_file:  # You may have to open the file with "w" depending on how you read it when encoding
     sa_file.write(decoded_string) # wb means binary mode for writing
     
 # Explicitly use service account credentials by specifying the private key file.
