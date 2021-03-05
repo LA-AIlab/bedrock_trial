@@ -45,8 +45,8 @@ print(buckets)
 
 
 blob = bucket.blob('features_bedrock.csv')
-path = "gs://bucket-bedrock/features_bedrock.csv"
-data = pd.read_csv(path)
+TEMP_DATA_BUCKET = "gs://bucket-bedrock/features_bedrock.csv"
+data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
