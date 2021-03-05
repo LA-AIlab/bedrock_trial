@@ -40,12 +40,13 @@ with open("service_account.json", "wb") as sa_file:  # You may have to open the 
 storage_client = storage.Client.from_service_account_json("service_account.json")
 
 # Make an authenticated API request
-buckets = list(storage_client.list_buckets())
-print("are we getting into buckets?")
-print(buckets)
+bucket = storage_client.get_bucket('bucket-bedrock')
+blob = bucket.blob('features_bedrock.csv')
 
-
-blob = buckets.blob('features_bedrock.csv')
+# buckets = list(storage_client.list_buckets())
+# print("are we getting into buckets?")
+# print(buckets)
+# blob = buckets.blob('features_bedrock.csv')
 TEMP_DATA_BUCKET = "gs://bucket-bedrock/features_bedrock.csv"
 data = pd.read_csv(TEMP_DATA_BUCKET)
 
