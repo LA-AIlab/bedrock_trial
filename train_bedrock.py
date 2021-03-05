@@ -43,15 +43,15 @@ storage_client = storage.Client.from_service_account_json("service_account.json"
 # bucket = storage_client.get_bucket('bucket-bedrock')
 # blob = bucket.blob('features_bedrock.csv')
 
-bucket = storage_client.bucket('bucket-bedrock')
-blobs = bucket.list_blobs()
-for blob in blobs:
-    print(blob.name)
+# bucket = storage_client.bucket('bucket-bedrock')
+# blobs = bucket.list_blobs()
+# for blob in blobs:
+#     print(blob.name)
 
-# buckets = list(storage_client.list_buckets())
-# print("are we getting into buckets?")
-# print(buckets)
-# blob = buckets.blob('features_bedrock.csv')
+buckets = list(storage_client.list_buckets())
+print("are we getting into buckets?")
+print(buckets[0])
+blob = buckets.blob('features_bedrock.csv')
 TEMP_DATA_BUCKET = "gs://bucket-bedrock/features_bedrock.csv"
 data = pd.read_csv(TEMP_DATA_BUCKET)
 
