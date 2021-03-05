@@ -45,8 +45,8 @@ storage_client = storage.Client.from_service_account_json("service_account.json"
 
 bucket = storage_client.bucket('bucket-bedrock')
 blobs = bucket.list_blobs()
-    for blob in blobs:
-        print(blob.name)
+for blob in blobs:
+    print(blob.name)
 
 # buckets = list(storage_client.list_buckets())
 # print("are we getting into buckets?")
