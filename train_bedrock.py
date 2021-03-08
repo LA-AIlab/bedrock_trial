@@ -55,7 +55,7 @@ print(buckets[0])
 # blob = buckets.blob('features_bedrock.csv')
 TEMP_DATA_BUCKET = buckets[0]
 print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
-# data = pd.read_csv(TEMP_DATA_BUCKET)
+data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
