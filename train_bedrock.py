@@ -85,7 +85,7 @@ print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
 # with fs.open('gs://bucket-bedrock/features_bedrock.csv') as f:
 #     data = pd.read_csv(f)
 
-
+data=TEMP_DATA_BUCKET
 data = data.fillna(0)
 print(data.head())
 
