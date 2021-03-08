@@ -87,6 +87,7 @@ print("did u get the tmp data bucket values?...")
 #     data = pd.read_csv(f)
 
 data=TEMP_DATA_BUCKET
+print("type of data.....",type(data))
 data = data.fillna(0)
 print(data.head())
 
