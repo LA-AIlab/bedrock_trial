@@ -64,18 +64,18 @@ bucket = storage_client.bucket(bucket_name)
 blobs = bucket.list_blobs()
 print("printing values in blobs....",blobs)
 
-list_temp_raw = []
-for file in blobs:
-    filename = file.name
-    temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
-    print(filename, temp.head())
-    list_temp_raw.append(temp)
+# list_temp_raw = []
+# for file in blobs:
+#     filename = file.name
+#     temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
+#     print(filename, temp.head())
+#     list_temp_raw.append(temp)
 
-data = pd.concat(list_temp_raw)
+# data = pd.concat(list_temp_raw)
 print("now we have data: and putting values of data in temp data bucket")
 
 
-TEMP_DATA_BUCKET = data
+TEMP_DATA_BUCKET = blobs
 print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
 # data = pd.read_csv(TEMP_DATA_BUCKET)
 
@@ -91,8 +91,7 @@ print(data.head())
 
 
 
-FEATURES_DATA = os.path.join(os.getenv("TEMP_DATA_BUCKET"),
-                             os.getenv("FEATURES_DATA"))
+FEATURES_DATA = data.iloc[:,:20]
 LR = float(os.getenv("LR"))
 NUM_LEAVES = int(os.getenv("NUM_LEAVES"))
 N_ESTIMATORS = int(os.getenv("N_ESTIMATORS"))
