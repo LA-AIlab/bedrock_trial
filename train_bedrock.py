@@ -63,30 +63,34 @@ print("")
 bucket = storage_client.bucket(bucket_name)
 blobs = bucket.list_blobs()
 print("printing values in blobs....",blobs)
+print("type of blob",type(blob))
 
-# list_temp_raw = []
-# for file in blobs:
-#     filename = file.name
-#     temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
-#     print(filename, temp.head())
-#     list_temp_raw.append(temp)
+list_temp_raw = []
+for file in blobs:
+    filename = file.name
+    temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
+    print(filename, temp.head())
+    list_temp_raw.append(temp)
 
-# data = pd.concat(list_temp_raw)
+data = pd.concat(list_temp_raw)
 print("now we have data: and putting values of data in temp data bucket")
+print("type of data variable is....: ",type(data))
 
 
-TEMP_DATA_BUCKET = blobs
-print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
+# TEMP_DATA_BUCKET = data
+# print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
 print("did u get the tmp data bucket values?...")
 # data = pd.read_csv(TEMP_DATA_BUCKET)
 
-# TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
+TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
+print("TEMP_DATA_BUCKET type is : ",type(TEMP_DATA_BUCKET))
+print("TEMP_DATA_BUCKET is: ",TEMP_DATA_BUCKET)
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
 # fs = gcsfs.GCSFileSystem(project='mybedrock-trial')
 # with fs.open('gs://bucket-bedrock/features_bedrock.csv') as f:
 #     data = pd.read_csv(f)
 
-data=TEMP_DATA_BUCKET
+# TEMP_DATA_BUCKET
 print("type of data.....",type(data))
 data = data.fillna(0)
 print(data.head())
