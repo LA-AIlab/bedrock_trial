@@ -98,6 +98,7 @@ print(data.head())
 
 
 FEATURES_DATA = data.iloc[:,:20]
+print("type of features_data", type(FEATURES_DATA))
 LR = float(os.getenv("LR"))
 NUM_LEAVES = int(os.getenv("NUM_LEAVES"))
 N_ESTIMATORS = int(os.getenv("N_ESTIMATORS"))
@@ -143,12 +144,12 @@ def compute_log_metrics(clf, x_val, y_val):
 
 def main():
     """Train pipeline"""
-    model_data = pd.read_csv(FEATURES_DATA)
+    #model_data = pd.read_csv(FEATURES_DATA)
 
     print("\tSplitting train and validation data")
     x_train, x_val, y_train, y_val = train_test_split(
-        model_data[FEATURE_COLS],
-        model_data[TARGET_COL],
+        data[FEATURE_COLS],
+        data[TARGET_COL],
         test_size=0.2,
     )
 
@@ -162,8 +163,8 @@ def main():
     compute_log_metrics(clf, x_val, y_val)
 
     print("\tComputing metrics")
-    selected = np.random.choice(model_data.shape[0], size=1000, replace=False)
-    features = model_data[FEATURE_COLS].iloc[selected]
+    selected = np.random.choice(data.shape[0], size=1000, replace=False)
+    features = data[FEATURE_COLS].iloc[selected]
     inference = clf.predict_proba(features)[:, 1]
 
     ModelMonitoringService.export_text(
