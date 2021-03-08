@@ -58,8 +58,11 @@ storage_client = storage.Client.from_service_account_json("service_account.json"
 buckets_list = list(storage_client.list_buckets())
 print("are we getting into buckets?")
 bucket_name='bucket-bedrock'
+print("bucket_name variable value is: ",bucket_name)
+print("")
 bucket = storage_client.bucket(bucket_name)
 blobs = bucket.list_blobs()
+print("printing values in blobs....",blobs)
 
 list_temp_raw = []
 for file in blobs:
@@ -69,6 +72,7 @@ for file in blobs:
     list_temp_raw.append(temp)
 
 data = pd.concat(list_temp_raw)
+print("now we have data: and putting values of data in temp data bucket")
 
 
 TEMP_DATA_BUCKET = data
