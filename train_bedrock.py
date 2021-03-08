@@ -49,13 +49,31 @@ storage_client = storage.Client.from_service_account_json("service_account.json"
 # for blob in blobs:
 #     print(blob.name)
 
-buckets = list(storage_client.list_buckets())
+# buckets = list(storage_client.list_buckets())
+# print("are we getting into buckets?")
+# print(buckets[0])
+# # blob = buckets.blob('features_bedrock.csv')
+
+
+buckets_list = list(storage_client.list_buckets())
 print("are we getting into buckets?")
-print(buckets[0])
-# blob = buckets.blob('features_bedrock.csv')
-TEMP_DATA_BUCKET = buckets[0]
+bucket_name='bucket-bedrock'
+bucket = storage_client.bucket(bucket_name)
+blobs = bucket.list_blobs()
+
+list_temp_raw = []
+for file in blobs:
+    filename = file.name
+    temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
+    print(filename, temp.head())
+    list_temp_raw.append(temp)
+
+data = pd.concat(list_temp_raw)
+
+
+TEMP_DATA_BUCKET = data
 print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
-data = pd.read_csv(TEMP_DATA_BUCKET)
+# data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
