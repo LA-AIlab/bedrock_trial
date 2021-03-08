@@ -77,6 +77,7 @@ print("now we have data: and putting values of data in temp data bucket")
 
 TEMP_DATA_BUCKET = blobs
 print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
+print("did u get the tmp data bucket values?...")
 # data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
