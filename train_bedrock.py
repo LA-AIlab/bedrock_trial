@@ -41,26 +41,27 @@ with open("service_account.json", "wb") as sa_file:  # You may have to open the 
 storage_client = storage.Client.from_service_account_json("service_account.json")
 
 # Make an authenticated API request
-bucket = storage_client.get_bucket('bucket-bedrock')
-blob = bucket.blob('features_bedrock.csv')
+# bucket = storage_client.get_bucket('bucket-bedrock')
+# blob = bucket.blob('features_bedrock.csv')
 
 # bucket = storage_client.bucket('bucket-bedrock')
 # blobs = bucket.list_blobs()
 # for blob in blobs:
 #     print(blob.name)
 
-# buckets = list(storage_client.list_buckets())
-# print("are we getting into buckets?")
-# print(buckets[0])
+buckets = list(storage_client.list_buckets())
+print("are we getting into buckets?")
+print(buckets[0])
 # blob = buckets.blob('features_bedrock.csv')
-# TEMP_DATA_BUCKET = blob
+TEMP_DATA_BUCKET = buckets[0]
+print("value for temp data bucket is: ",TEMP_DATA_BUCKET)
 # data = pd.read_csv(TEMP_DATA_BUCKET)
 
 # TEMP_DATA_BUCKET="gs://bucket-bedrock/features_bedrock.csv" #"gs://student_bucket"
 # data=util.load_data(TEMP_DATA_BUCKET, storage_options = service_account.json)
-fs = gcsfs.GCSFileSystem(project='mybedrock-trial')
-with fs.open('gs://bucket-bedrock/features_bedrock.csv') as f:
-    data = pd.read_csv(f)
+# fs = gcsfs.GCSFileSystem(project='mybedrock-trial')
+# with fs.open('gs://bucket-bedrock/features_bedrock.csv') as f:
+#     data = pd.read_csv(f)
 
 
 data = data.fillna(0)
