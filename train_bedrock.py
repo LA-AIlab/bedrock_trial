@@ -63,7 +63,7 @@ print("")
 bucket = storage_client.bucket(bucket_name)
 blobs = bucket.list_blobs()
 print("printing values in blobs....",blobs)
-print("type of blob",type(blob))
+print("type of blob",type(blobs))
 
 list_temp_raw = []
 for file in blobs:
