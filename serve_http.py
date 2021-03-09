@@ -17,7 +17,7 @@ from constants import FEATURE_COLS
 OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
 X=data[FEATURE_COLS]
-def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
+def predict_prob(data,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
     Args:
         subscriber_features (dict)
@@ -34,7 +34,7 @@ def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     current_app.monitor.log_prediction(
         request_body=json.dumps(request_json),
         features=X.values[0],
-        output=prob,
+        output=prob)
     
     return prob
 
