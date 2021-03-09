@@ -31,9 +31,12 @@ from preprocess import util
 # Retrieve secret value from environment variable
 secret_value = os.getenv("SECRET_KEY_1")
 print("type of var secret value.......: ",type(secret_value))
+print("")
 
 # Decode the string to a file using the complementary method as encoding
 decoded_string = base64.b64decode(secret_value)
+print("type of decoded string....",type(decoded_string))
+print("")
 with open("service_account.json", "wb") as sa_file:  # You may have to open the file with "w" depending on how you read it when encoding
     sa_file.write(decoded_string) # wb means binary mode for writing
     
@@ -55,26 +58,26 @@ storage_client = storage.Client.from_service_account_json("service_account.json"
 # # blob = buckets.blob('features_bedrock.csv')
 
 
-buckets_list = list(storage_client.list_buckets())
-print("are we getting into buckets?")
-bucket_name='bucket-bedrock'
-print("bucket_name variable value is: ",bucket_name)
-print("")
-bucket = storage_client.bucket(bucket_name)
-blobs = bucket.list_blobs()
-print("printing values in blobs....",blobs)
-print("type of blob",type(blobs))
+# buckets_list = list(storage_client.list_buckets())
+# print("are we getting into buckets?")
+# bucket_name='bucket-bedrock'
+# print("bucket_name variable value is: ",bucket_name)
+# print("")
+# bucket = storage_client.bucket(bucket_name)
+# blobs = bucket.list_blobs()
+# print("printing values in blobs....",blobs)
+# print("type of blob",type(blobs))
 
-list_temp_raw = []
-for file in blobs:
-    filename = file.name
-    temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
-    print(filename, temp.head())
-    list_temp_raw.append(temp)
+# list_temp_raw = []
+# for file in blobs:
+#     filename = file.name
+#     temp = pd.read_csv('gs://'+'bucket-bedrock'+'/'+'features_bedrock.csv', encoding='utf-8')
+#     print(filename, temp.head())
+#     list_temp_raw.append(temp)
 
-data = pd.concat(list_temp_raw)
+# data = pd.concat(list_temp_raw)
 print("now we have data: and putting values of data in temp data bucket")
-print("type of data variable is....: ",type(data))
+# print("type of data variable is....: ",type(data))
 
 
 # TEMP_DATA_BUCKET = data
@@ -91,7 +94,8 @@ print("TEMP_DATA_BUCKET is: ",TEMP_DATA_BUCKET)
 #     data = pd.read_csv(f)
 
 # TEMP_DATA_BUCKET
-print("type of data.....",type(data))
+print("type of data of TEMP_DATA_BUCKET:.....",type(TEMP_DATA_BUCKET))
+data=TEMP_DATA_BUCKET
 data = data.fillna(0)
 print(data.head())
 
