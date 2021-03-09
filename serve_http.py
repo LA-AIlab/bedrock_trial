@@ -16,8 +16,11 @@ from constants import FEATURE_COLS
 
 OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
-X=data[FEATURE_COLS]
-def predict_prob(data,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
+
+df="gs://bucket-bedrock/features_bedrock.csv"
+print("values for X", type(X))
+X=df[FEATURE_COLS]
+def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
     Args:
         subscriber_features (dict)
