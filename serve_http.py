@@ -22,7 +22,7 @@ df = pandas.read_csv(f)
 print("print values and type for df...:", type(df), df)
 
 feat=df[FEATURE_COLS]
-print("values for X", type(X))
+print("values for feat", type(feat))
 def predict_prob(feat,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
     Args:
