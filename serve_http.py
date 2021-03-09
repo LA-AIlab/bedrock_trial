@@ -21,9 +21,9 @@ f="gs://bucket-bedrock/features_bedrock.csv"
 df = pandas.read_csv(f)
 print("print values and type for df...:", type(df), df)
 
-X=df[FEATURE_COLS]
+feat=df[FEATURE_COLS]
 print("values for X", type(X))
-def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
+def predict_prob(feat,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
     Args:
         subscriber_features (dict)
@@ -33,16 +33,28 @@ def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """
     
     # Score
-    prob = (model.predict_proba(np.array(X).reshape(1, -1))[:, 1].item())
+    prob = (model.predict_proba(np.array(feat).reshape(1, -1))[:, 1].item())
 
     # Log the prediction
     # Log the prediction
     current_app.monitor.log_prediction(
-        request_body=json.dumps(request_json),
-        features=X.values[0],
+        request_body=json.dumps(feat),
+        features=feat.values[0],
         output=prob)
     
     return prob
+
+app = Flask(__name__)
+@app.route("/", methods=["POST"])
+def get_churn():
+    """Returns the `churn_prob` given the subscriber features"""
+
+    feat = request.json
+    result = {
+        "churn_prob": predict_prob(feat)
+    }
+    return result
+
 
 
 @app.before_first_request
