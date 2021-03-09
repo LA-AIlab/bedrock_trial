@@ -18,7 +18,7 @@ OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
 
 df="gs://bucket-bedrock/features_bedrock.csv"
-print("print values for df...:", df.head())
+print("print values for df...:", df)
 
 X=df[FEATURE_COLS]
 print("values for X", type(X))
