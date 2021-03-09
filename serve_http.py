@@ -18,8 +18,10 @@ OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
 
 df="gs://bucket-bedrock/features_bedrock.csv"
-print("values for X", type(X))
+print("print values for df...:", df.head())
+
 X=df[FEATURE_COLS]
+print("values for X", type(X))
 def predict_prob(X,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
     Args:
