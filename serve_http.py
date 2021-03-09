@@ -6,7 +6,7 @@
 
 import json
 import pickle
-
+import pandas
 import numpy as np
 from bedrock_client.bedrock.metrics.service import ModelMonitoringService
 from flask import Flask, Response, current_app, request
