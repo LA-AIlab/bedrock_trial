@@ -17,8 +17,9 @@ from constants import FEATURE_COLS
 OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
 
-df="gs://bucket-bedrock/features_bedrock.csv"
-print("print values for df...:", df)
+f="gs://bucket-bedrock/features_bedrock.csv"
+df = pandas.read_csv(f)
+print("print values and type for df...:", type(df), df)
 
 X=df[FEATURE_COLS]
 print("values for X", type(X))
