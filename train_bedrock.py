@@ -8,7 +8,7 @@ import logging
 import os
 import pickle
 import base64
-import gcsfs
+# import gcsfs
 from io import BytesIO
 from google.cloud import storage
 
