@@ -29,7 +29,7 @@ def predict_prob(feat,model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
         subscriber_features (dict)
         model
     Returns:
-        churn_prob (float): churn probability
+        prob (float): churn probability
     """
     
     # Score
@@ -51,7 +51,7 @@ def get_churn():
 
     feat = request.json
     result = {
-        "churn_prob": predict_prob(feat)
+        "prob": predict_prob(feat)
     }
     return result
 
