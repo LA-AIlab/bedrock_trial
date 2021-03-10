@@ -94,9 +94,9 @@ print("TEMP_DATA_BUCKET is: ",TEMP_DATA_BUCKET)
 #     data = pd.read_csv(f)
 
 # TEMP_DATA_BUCKET
-print("type of data of TEMP_DATA_BUCKET:.....",type(TEMP_DATA_BUCKET))
-data=pd.DataFrame(TEMP_DATA_BUCKET)
-print("type of data of TEMP_DATA_BUCKET after conversion to dataframe:..... ",type(data))
+data = pd.read_csv(TEMP_DATA_BUCKET)
+print("type of data in TEMP_DATA_BUCKET:.....",type(data))
+print("contents of dataframe:..... ",data)
 
 data = data.fillna(0)
 print(data.head())
